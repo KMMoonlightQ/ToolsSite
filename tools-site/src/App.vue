@@ -1,21 +1,27 @@
 <script setup lang="ts">
-// This starter template is using Vue 3 <script setup> SFCs
-// Check out https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup
-import HelloWorld from './components/HelloWorld.vue'
+import { SITE_LIST } from './site-config'
+import CategoryArea from './components/CategoryArea.vue'
 </script>
 
 <template>
-  <img alt="Vue logo" src="./assets/logo.png" />
-  <HelloWorld msg="Hello Vue 3 + TypeScript + Vite" />
+  <n-tabs
+    type="line"
+    default-value="efficient_office"
+    justify-content="space-evenly"
+  >
+    <n-tab-pane
+      v-for="item in SITE_LIST"
+      :key="item.value"
+      :name="item.value"
+      :tab="item.label"
+    >
+      <category-area
+        v-for="cell in item.category_setting"
+        :key="cell.value"
+        :category="cell"
+      />
+    </n-tab-pane>
+  </n-tabs>
 </template>
 
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
-</style>
+<style></style>
